@@ -39,7 +39,8 @@ function listDir($dir)
 				{
          			if($file!="." && $file!="..")
 					{
-         				echo "<a target=\"_blank\" href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a><br>";
+         				echo "<a target=\"_blank\" href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a>
+						&nbsp;&nbsp;<a href='del.php?fname=" . iconv("gbk","utf-8",$file). "'>删除</a><br>";
       				}
      			}
         	}
@@ -49,6 +50,7 @@ function listDir($dir)
 }
 //开始运行
 listDir("./upload");
+
 
 ?>
 </div>
