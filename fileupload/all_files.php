@@ -54,6 +54,7 @@ function listDir($dir)
    	{
      	if ($dh = opendir($dir)) 
 		{
+        	echo "<table class=\"table\">";
         	while (($file = readdir($dh)) !== false)
 			{
      			if((is_dir($dir."/".$file)) && $file!="." && $file!="..")
@@ -65,11 +66,13 @@ function listDir($dir)
 				{
          			if($file!="." && $file!="..")
 					{
-         				echo "<a href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a><br>";
+         				echo "<tr><td><a target=\"_blank\" href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a></td>
+						<td><a href='del.php?fname=" . iconv("gbk","utf-8",$file). "'>删除</a></td></tr>";
       				}
      			}
         	}
         	closedir($dh);
+			echo "</table>";
      	}
    	}
 }

@@ -22,12 +22,14 @@
 <hr>
 <h2>下载列表</h2>
 <?php
+
 function listDir($dir)
 {
 	if(is_dir($dir))
    	{
      	if ($dh = opendir($dir)) 
 		{
+			echo "<table class=\"table\">";
         	while (($file = readdir($dh)) !== false)
 			{
      			if((is_dir($dir."/".$file)) && $file!="." && $file!="..")
@@ -39,15 +41,17 @@ function listDir($dir)
 				{
          			if($file!="." && $file!="..")
 					{
-         				echo "<a target=\"_blank\" href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a>
-						&nbsp;&nbsp;<a href='del.php?fname=" . iconv("gbk","utf-8",$file). "'>删除</a><br>";
+         				echo "<tr><td><a target=\"_blank\" href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a></td>
+						<td><a href='del.php?fname=" . iconv("gbk","utf-8",$file). "'>删除</a></td></tr>";
       				}
      			}
         	}
         	closedir($dh);
+			echo "</table>";
      	}
    	}
 }
+
 //开始运行
 listDir("./upload");
 
