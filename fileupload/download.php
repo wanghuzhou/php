@@ -3,8 +3,8 @@
 
 if(isset($_GET["fname"])){
 	$file = $_GET["fname"];
-	$fname = iconv("utf-8","gbk",$file)."";
-	if(file_exists($fname)){
+	$fname = "./upload/".iconv("utf-8","gbk",$file);
+	if(is_file($fname)){
 		del($fname);
 		echo "已删除：".$file;
 	}else{
@@ -13,7 +13,7 @@ if(isset($_GET["fname"])){
 }
 
 function del($fname){
-	unlink("./upload/". $fname);
+	unlink($fname);
 }
 ?>
 
