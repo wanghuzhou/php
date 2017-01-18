@@ -1,4 +1,22 @@
 <hr>
+<?php
+
+if(isset($_GET["fname"])){
+	$file = $_GET["fname"];
+	$fname = iconv("utf-8","gbk",$file)."";
+	if($file!=""){
+		del($fname);
+		echo "已删除：".$file;
+	}else{
+		echo "failed";
+	}
+}
+
+function del($fname){
+	unlink("./upload/". $fname);
+}
+?>
+
 <h2>下载列表</h2>
 <?php
 
@@ -21,7 +39,7 @@ function listDir($dir)
          			if($file!="." && $file!="..")
 					{
          				echo "<tr><td><a target=\"_blank\" href='./upload/".iconv("gbk","utf-8",$file)."'>".iconv("gbk","utf-8",$file)."</a></td>
-						<td><a href='del.php?fname=" . iconv("gbk","utf-8",$file). "'>删除</a></td></tr>";
+						<td><a href='./up.php?fname=" . iconv("gbk","utf-8",$file). "'>删除</a></td></tr>";
       				}
      			}
         	}
@@ -33,6 +51,5 @@ function listDir($dir)
 
 //开始运行
 listDir("./upload");
-
 
 ?>
