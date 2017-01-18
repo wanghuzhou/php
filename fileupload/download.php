@@ -4,11 +4,11 @@
 if(isset($_GET["fname"])){
 	$file = $_GET["fname"];
 	$fname = iconv("utf-8","gbk",$file)."";
-	if($file!=""){
+	if(file_exists($fname)){
 		del($fname);
 		echo "已删除：".$file;
 	}else{
-		echo "failed";
+		echo "不存在 ".$file;
 	}
 }
 
