@@ -20,24 +20,26 @@ include("form.html");
 ?>
 <hr>
 <?php
-$fileArray = $_FILES['file'];//根据请求的name获取文件
-$upload_dir = "./upload/";
+if (isset($_POST['submit'])) {
+	$fileArray = $_FILES['file'];//根据请求的name获取文件
+	$upload_dir = "./upload/";
 
-$successName = array();
-foreach ($fileArray['error'] as $key => $error){  //遍历处理文件
-  if ( $error == UPLOAD_ERR_OK ) {
-    $temp_name = $fileArray['tmp_name'][$key];
-    $file_name = $fileArray['name'][$key];
-    move_uploaded_file($temp_name, iconv("utf-8","gbk",$upload_dir.$file_name));
-    array_push($successName, $file_name);//把上传成功的文件名称加入数组
-  }else{
-    echo '上传失败';
-  }
- 
-}
-echo '上传成功 :<br> ';
-foreach($successName as $vala){
-	echo $vala . '<br>';
+	$successName = array();
+	foreach ($fileArray['error'] as $key => $error){  //遍历处理文件
+	  if ( $error == UPLOAD_ERR_OK ) {
+		$temp_name = $fileArray['tmp_name'][$key];
+		$file_name = $fileArray['name'][$key];
+		move_uploaded_file($temp_name, iconv("utf-8","gbk",$upload_dir.$file_name));
+		array_push($successName, $file_name);//把上传成功的文件名称加入数组
+	  }else{
+		echo '上传失败';
+	  }
+	 
+	}
+	echo '上传成功 :<br> ';
+	foreach($successName as $vala){
+		echo $vala . '<br>';
+	}
 }
 //echo var_dump($successName);
 include("download.php");
