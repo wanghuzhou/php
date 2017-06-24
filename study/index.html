@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内涵段子</title>
+    <link rel="stylesheet" href="css/my.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <h1>欢迎来到内涵段子社区</h1>
+</div>
+
+<div class="row">
+    <div class="col-3 menu">
+        <ul>
+            <li>全部段子</li>
+            <li>The City</li>
+            <li>The Island</li>
+            <li>The Food</li>
+        </ul>
+    </div>
+    <div class="col-9" id="duanzi">
+        <div class="col-4">
+            <h3>段子标题</h3>
+            <p>随便写点东西测试一下</p>
+        </div>
+        <div class="col-4">
+            <h3>段子标题</h3>
+            <p>随便写点东西测试一下</p>
+        </div>
+        <div class="col-4">
+            <h3>段子标题</h3>
+            <p id="a">随便写点东西测试一下</p>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(function(){
+        $.ajax({
+            url:'/getJoke.php',
+            type:'get',
+            data:{},
+            datatype:'json',
+            success:function (data) {
+               $.each(JSON.parse(data),function(id,item){
+                    $("#duanzi").append("<div class='col-4'><h3>"+item.title+
+                        "</h3><p>"+item.detail+"</p></div>")
+               });
+            }
+        });
+
+    })
+</script>
+</body>
+</html>
