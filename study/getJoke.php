@@ -18,5 +18,6 @@ if ($result->num_rows > 0) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
+//JSON_UNESCAPED_UNICODE不对中文进行转换Unicode码
 $json_str = json_encode($data,JSON_UNESCAPED_UNICODE);
 echo $json_str;
