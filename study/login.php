@@ -12,6 +12,13 @@
  * Date: 2017-6-21 0021
  * Time: 11:21
  */
+
+session_start();//要使用session，必须启动会话
+
+/*if(isset($_COOKIE['user'])){
+    echo $_COOKIE['user'];
+}*/
+
 if(isset($_POST['submit'])){
     include ("db.php");
     $name = $_POST["username"];
@@ -28,7 +35,14 @@ if(isset($_POST['submit'])){
         $row = $result->fetch_assoc();
         if($row["c"] == 1){
             echo "Login Success!";
-            //header("Location: db.php");
+
+            echo " 1";
+            $_SESSION['username'] = $name;
+            echo "2";
+
+            //setcookie("user",$name."",time()+600);
+
+            //header("Location: index.html");
         }else{
             echo "Username or password wrong!";
         }
@@ -37,6 +51,13 @@ if(isset($_POST['submit'])){
     }
     $conn->close();
 }
+
+
+if(isset($_SESSION['username'])){
+    echo $_SESSION['username'] ;
+    //print_r($_SESSION);
+}
+
 
 ?>
 <div>

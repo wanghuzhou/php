@@ -15,6 +15,8 @@
  * Date: 2017/6/23
  * Time: 22:24
  */
+include ("checklogin.php");
+
 if(isset($_POST['submit'])) {
     include("db.php");
     $title = $_POST['title'];
